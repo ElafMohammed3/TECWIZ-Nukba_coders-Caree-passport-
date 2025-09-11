@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Career Bank</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search for a profession...">
+            </div>
+            
+            <div class="filter-group">
+                <select id="category-filter">
+                    <option value="">All Fields</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Health">Health</option>
+                    <option value="Education">Education</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Commerce">Commerce</option>
+                </select>
+                
+                <select id="salary-filter">
+                    <option value="">All Levels</option>
+                    <option value="low">Low Salary</option>
+                    <option value="medium">Medium Salary</option>
+                    <option value="high">High Salary</option>
+                </select>
+            </div>
+            
+            <div class="sort-group">
+                <select id="sort-option">
+                    <option value="title">Alphabetical Order</option>
+                    <option value="salary-asc">Salary (Low to High)</option>
+                    <option value="salary-desc">Salary (High to Low)</option>
+                </select>
+                
+                <button id="reset-filters"><i class="fas fa-sync-alt"></i> Reset</button>
+            </div>
+        </div>
+        
+        <div class="careers-grid" id="careers-container">
+            <!-- سيتم ملؤها بواسطة JavaScript -->
+        </div>
+    </div>
+</body>
+</html>

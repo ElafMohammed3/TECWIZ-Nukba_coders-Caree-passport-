@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title> Resources Library </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="container">
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="search-input" placeholder="Search resources...">
+            </div>
+            
+            <div class="filter-group">
+                <select id="category-filter">
+                    <option value="">All Categories</option>
+                    <option value="Articles">Articles</option>
+                    <option value="E-books">E-books</option>
+                    <option value="Checklists">Checklists</option>
+                    <option value="Webinars">Webinars</option>
+                </select>
+                
+                <select id="format-filter">
+                    <option value="">All Formats</option>
+                    <option value="PDF">PDF</option>
+                    <option value="Video">Video</option>
+                    <option value="Article">Article</option>
+                    <option value="Infographic">Infographic</option>
+                </select>
+            </div>
+            
+            <div class="sort-group">
+                <select id="sort-option">
+                    <option value="title">Alphabetical Order</option>
+                    <option value="newest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                </select>
+                
+                <button id="reset-filters"><i class="fas fa-sync-alt"></i> Reset</button>
+            </div>
+        </div>
+        
+        <div class="resources-grid" id="resources-container">
+            </div>
+    </div>
+</body>
+</html>
