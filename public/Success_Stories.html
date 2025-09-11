@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title> Success stories </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <div class="container">
+        <div class="tabs-container">
+            <ul class="tabs">
+                <li><a href="#stories-tab" class="tab-link active">Browse Stories</a></li>
+                <li><a href="#share-tab" class="tab-link">Share Your Story</a></li>
+            </ul>
+        </div>
+        
+        <div id="stories-tab" class="tab-content active">
+            <div class="inspiration-quote">
+                <h2><i class="fas fa-quote-right"></i> There are no shortcuts to any place worth going <i class="fas fa-quote-left"></i></h2>
+                <p>Listen to the experiences of inspiring people and build your path to success</p>
+            </div>
+
+            <div class="controls">
+                <h2>Filter by Field</h2>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">All Fields</button>
+                    <button class="filter-btn" data-category="Engineering">Engineering</button>
+                    <button class="filter-btn" data-category="Medicine">Medicine</button>
+                    <button class="filter-btn" data-category="Arts">Arts</button>
+                    <button class="filter-btn" data-category="Technology">Technology</button>
+                    <button class="filter-btn" data-category="Education">Education</button>
+                </div>
+            </div>
+            
+            <div class="stories-grid" id="stories-container">
+                </div>
+            
+            <div class="empty-state" id="empty-state">
+                <i class="fas fa-search"></i>
+                <h3>No stories in this field</h3>
+                <p>Try selecting another field or browse all available stories</p>
+                <button class="filter-btn active" data-category="all">Show All Stories</button>
+            </div>
+        </div>
+        
+        <div id="share-tab" class="tab-content">
+            <div class="share-story-container">
+                <div class="form-header">
+                    <h2>Tell us about your journey to success</h2>
+                    <p>Sharing your experience may inspire someone else starting their journey</p>
+                </div>
+                
+                <form id="storyForm" class="story-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter your name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="example@email.com" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="jobTitle">Current Job Title</label>
+                        <input type="text" id="jobTitle" class="form-control" placeholder="Example: Web Developer, Engineer, etc..." required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="company">Company / Organization</label>
+                        <input type="text" id="company" class="form-control" placeholder="Company or organization name">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="category">Field</label>
+                        <select id="category" class="form-control" required>
+                            <option value="">Choose your field of work</option>
+                            <option value="Technology">Technology</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Medicine">Medicine</option>
+                            <option value="Education">Education</option>
+                            <option value="Arts">Arts</option>
+                            <option value="Business">Business</option>
+                            <option value="Other">Other Field</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="years">Years of Experience</label>
+                        <input type="number" id="years" class="form-control" min="1" max="50" placeholder="Number of years" required>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="quote">Inspirational Quote from Your Journey</label>
+                        <textarea id="quote" class="form-control" placeholder="Write an inspiring quote that summarizes your journey or philosophy towards success..." required></textarea>
+                        <div class="form-hint">Keep it short and powerful (one or two sentences)</div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="journey">Your Journey to Success</label>
+                        <textarea id="journey" class="form-control" placeholder="Tell us about your journey, the challenges you faced, and the lessons you learned..." required></textarea>
+                        <div class="form-hint">Share the inspiring details of your journey (between 100-300 words)</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projects">Number of Notable Projects</label>
+                        <input type="number" id="projects" class="form-control" min="0" placeholder="Number of significant projects">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="companies">Number of Companies You Worked For</label>
+                        <input type="number" id="companies" class="form-control" min="1" placeholder="Number of companies">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="photo">Personal Photo (Optional)</label>
+                        <input type="file" id="photo" class="form-control" accept="image/*">
+                        <div class="form-hint">A clear photo with a neutral background is preferred</div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>
+                            <input type="checkbox" required>
+                            I agree to share my story as an inspiring example for others
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Share My Story
+                    </button>
+                </form>
+                
+                <div id="successMessage" class="success-message">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Thank you for sharing your story!</h3>
+                    <p>Your story has been successfully received and will be reviewed before publishing. It may become a source of inspiration for many people.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
