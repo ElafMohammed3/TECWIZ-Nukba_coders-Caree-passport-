@@ -1,0 +1,11 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Open feedback.html",
+            "file": "c:\\Users\\MF\\Desktop\\Nukba coders\\feedback.html"
+        }
+    ]
+}
