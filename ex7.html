@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextStep Navigator - Complete Bookmarking System</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #DBF0F5; /* Color 50 */
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* Header */
+        header {
+            background: #35A2C0; /* Color 400 */
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .logo p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+        }
+
+        /* Navigation */
+        nav {
+            background: #B6E1EB; /* Color 100 */
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #254454; /* Color 900 */
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        nav a:hover, nav a.active {
+            background: #254454; /* Color 900 */
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: rgba(53, 162, 192, 0.1); /* Color 400 with transparency */
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            color: #254454; /* Color 900 */
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #286076; /* Color 600 */
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Cards */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #B6E1EB; /* Color 100 */
+            position: relative;
+        }
+
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #35A2C0; /* Color 400 */
+        }
+
+        .content-card h3 {
+            color: #254454; /* Color 900 */
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .content-card p {
+            color: #286076; /* Color 600 */
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #B6E1EB; /* Color 100 */
+        }
+
+        /* Save Buttons */
+        .bookmark-btn {
+            padding: 0.8rem 1.5rem;
+            background: #254454; /* Color 900 */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .bookmark-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 68, 84, 0.3);
+            background: #1a3441; /* Slightly darker color */
+        }
+
+        .bookmark-btn.added {
+            background: #28a745;
+        }
+
+        .bookmark-btn.added:hover {
+            background: #218838;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        /* Bookmarks Page */
+        .bookmarks-page {
+            display: none;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #254454; /* Color 900 */
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            color: #286076; /* Color 600 */
+            font-size: 1.1rem;
+        }
+
+        .bookmarks-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #254454; /* Color 900 */
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 68, 84, 0.3);
+            background: #1a3441;
+        }
+
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+            background: #c82333;
+        }
+
+        .bookmarks-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .bookmark-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #B6E1EB; /* Color 100 */
+            transition: all 0.3s ease;
+        }
+
+        .bookmark-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            border-color: #35A2C0; /* Color 400 */
+        }
+
+        .bookmark-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            gap: 1rem;
+        }
+
+        .bookmark-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #254454; /* Color 900 */
+            margin: 0;
+            flex: 1;
+        }
+
+        .bookmark-actions {
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .bookmark-type {
+            background: rgba(53, 162, 192, 0.1); /* Color 400 with transparency */
+            color: #254454; /* Color 900 */
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid #35A2C0;
+        }
+
+        .bookmark-notes {
+            background: #f8f9fa;
+            padding: 1.2rem;
+            border-radius: 10px;
+            margin: 1.2rem 0;
+            border-right: 4px solid #35A2C0; /* Color 400 */
+        }
+
+        .bookmark-notes textarea {
+            width: 100%;
+            min-height: 100px;
+            border: 2px solid #B6E1EB; /* Color 100 */
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            font-size: 0.95rem;
+        }
+
+        .bookmark-notes textarea:focus {
+            outline: none;
+            border-color: #35A2C0; /* Color 400 */
+            box-shadow: 0 0 0 3px rgba(53, 162, 192, 0.1);
+        }
+
+        .bookmark-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.2rem;
+            padding-top: 1.2rem;
+            border-top: 2px solid #B6E1EB; /* Color 100 */
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .bookmark-date {
+            font-size: 0.85rem;
+            color: #286076; /* Color 600 */
+            font-weight: 500;
+        }
+
+        .social-share {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            background: #254454; /* Color 900 */
+            color: white;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 3px 10px rgba(37, 68, 84, 0.3);
+            background: #1a3441;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #286076; /* Color 600 */
+            grid-column: 1 / -1;
+        }
+
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.7;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #254454; /* Color 900 */
+        }
+
+        .empty-state p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #286076; /* Color 600 */
+        }
+
+        /* Footer */
+        footer {
+            background: #254454; /* Color 900 */
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* File Upload Section */
+        .upload-section {
+            background: rgba(219, 240, 245, 0.5); /* Color 50 with transparency */
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border: 2px dashed #35A2C0; /* Color 400 */
+        }
+
+        .upload-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .upload-preview {
+            max-width: 200px;
+            max-height: 200px;
+            border-radius: 10px;
+            display: none;
+            border: 2px solid #B6E1EB;
+        }
+
+        .file-preview {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .file-preview img, .file-preview video {
+            max-width: 100%;
+            border-radius: 10px;
+            border: 2px solid #B6E1EB;
+        }
+
+        .file-preview .pdf-preview {
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px dashed #35A2C0;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content-grid, .bookmarks-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .bookmark-header {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .bookmark-footer {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.8rem;
+            }
+            
+            .bookmarks-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-card, .bookmark-card {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Notifications */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #254454; /* Color 900 */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .notification.success {
+            background: #28a745;
+        }
+
+        .notification.error {
+            background: #dc3545;
+        }
+
+        .notification.warning {
+            background: #ffc107;
+            color: #333;
+        }
+
+        .notification.info {
+            background: #17a2b8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>NextStep Navigator</h1>
+                <p>Your Guide to Career Future</p>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#" class="nav-link active" data-page="home">🏠 Home</a></li>
+                <li><a href="#" class="nav-link" data-page="bookmarks">
+                    📑 My Bookmarks (<span class="bookmark-count">0</span>)
+                </a></li>
+                <li><a href="#" class="nav-link" data-page="upload">📤 Upload File</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Home Page -->
+            <div id="homePage" class="page-content">
+                <div class="hero">
+                    <h2>Welcome to Your Career Guide</h2>
+                    <p>Discover your future career and build your professional path with NextStep Navigator</p>
+                </div>
+
+                <div class="content-grid">
+                    <!-- Career Card 1 -->
+                    <div class="content-card">
+                        <h3>Software Engineer</h3>
+                        <p>Specializes in designing and developing software systems and applications. Requires programming and problem-solving skills.</p>
+                        <div class="card-footer">
+                            <span class="bookmark-type">💻 Career</span>
+                            <button class="bookmark-btn" data-id="career-001" data-type="career" 
+                                    data-title="Software Engineer" data-url="#software-engineer">
+                                ♥ Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Video Card -->
+                    <div class="content-card">
+                        <h3>Video: Future of Tech Work</h3>
+                        <p>Watch this video to understand job market trends in the tech field for the coming years.</p>
+                        <div class="card-footer">
+                            <span class="bookmark-type">🎥 Video</span>
+                            <button class="bookmark-btn" data-id="video-001" data-type="video" 
+                                    data-title="Video: Future of Tech Work" data-url="#tech-future">
+                                ♥ Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Success Story Card -->
+                    <div class="content-card">
+                        <h3>Success Story: From Student to Entrepreneur</h3>
+                        <p>How Ahmed built his startup through his passion for programming.</p>
+                        <div class="card-footer">
+                            <span class="bookmark-type">🌟 Success Story</span>
+                            <button class="bookmark-btn" data-id="story-001" data-type="story" 
+                                    data-title="Success Story: From Student to Entrepreneur" data-url="#success-story">
+                                ♥ Save
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Page -->
+            <div id="uploadPage" class="page-content bookmarks-page">
+                <div class="page-header">
+                    <h1>📤 Upload Your Files</h1>
+                    <p>Add your images, PDFs, or videos to bookmarks</p>
+                </div>
+
+                <div class="upload-section">
+                    <form class="upload-form" id="uploadForm">
+                        <div>
+                            <label for="fileInput" class="btn btn-primary">
+                                📁 Choose File
+                            </label>
+                            <input type="file" id="fileInput" accept="image/*,.pdf,video/*" 
+                                   style="display: none;" onchange="previewFile()">
+                        </div>
+
+                        <div id="filePreview" class="file-preview">
+                            <img id="imagePreview" class="upload-preview">
+                            <video id="videoPreview" class="upload-preview" controls></video>
+                            <div id="pdfPreview" class="pdf-preview upload-preview">
+                                📄 PDF Preview
+                            </div>
+                        </div>
+
+                        <input type="text" id="fileTitle" placeholder="File Title" 
+                               style="padding: 1rem; border: 2px solid #B6E1EB; border-radius: 10px;">
+
+                        <textarea id="fileDescription" placeholder="File Description" 
+                                  style="padding: 1rem; border: 2px solid #B6E1EB; border-radius: 10px; min-height: 100px;"></textarea>
+
+                        <button type="button" class="btn btn-primary" onclick="uploadFile()">
+                            💾 Save File
+                        </button>
+                    </form>
+                </div>
+
+                <div class="bookmarks-grid" id="uploadedFiles">
+                    <!-- Uploaded files will appear here -->
+                </div>
+            </div>
+
+            <!-- Bookmarks Page -->
+            <div id="bookmarksPage" class="page-content bookmarks-page">
+                <div class="page-header">
+                    <h1>My Personal Bookmarks</h1>
+                    <p>Manage all items you have saved</p>
+                </div>
+
+                <div class="bookmarks-actions">
+                    <button class="btn btn-primary" onclick="exportBookmarks('json')">
+                        💾 Export as JSON
+                    </button>
+                    <button class="btn btn-danger" onclick="clearAllBookmarks()">
+                        🗑️ Delete All
+                    </button>
+                </div>
+
+                <div id="bookmarksList" class="bookmarks-grid">
+                    <!-- Bookmarks will be populated here via JavaScript -->
+                </div>
+
+                <div id="emptyState" class="empty-state">
+                    <div class="empty-icon">📁</div>
+                    <h3>No Saved Items Yet</h3>
+                    <p>Start exploring careers and resources and save what you like</p>
+                    <button class="btn btn-primary" onclick="showPage('home')">
+                        Explore Now
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 NextStep Navigator. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // ==================== Bookmark Management System ====================
+        const BOOKMARK_STORAGE_KEY = 'nextstep_bookmarks_v6';
+
+        // Initialize system
+        function initBookmarkSystem() {
+            if (!localStorage.getItem(BOOKMARK_STORAGE_KEY)) {
+                const initialData = {
+                    bookmarks: [],
+                    uploadedFiles: [],
+                    metadata: {
+                        version: "2.0",
+                        created: new Date().toISOString(),
+                        lastModified: new Date().toISOString()
+                    },
+                    statistics: {
+                        totalAdded: 0,
+                        totalRemoved: 0,
+                        byType: {
+                            career: 0,
+                            video: 0,
+                            story: 0,
+                            image: 0,
+                            pdf: 0
+                        }
+                    }
+                };
+                localStorage.setItem(BOOKMARK_STORAGE_KEY, JSON.stringify(initialData, null, 2));
+            }
+            displayUploadedFiles();
+            updateBookmarkCount();
+            updateBookmarkButtons();
+            setupNavigation();
+        }
+
+        // Get bookmark data
+        function getBookmarkData() {
+            try {
+                return JSON.parse(localStorage.getItem(BOOKMARK_STORAGE_KEY)) || createInitialData();
+            } catch (error) {
+                console.error('Error reading data:', error);
+                return createInitialData();
+            }
+        }
+
+        function createInitialData() {
+            return {
+                bookmarks: [],
+                uploadedFiles: [],
+                metadata: {
+                    version: "2.0",
+                    created: new Date().toISOString(),
+                    lastModified: new Date().toISOString()
+                },
+                statistics: {
+                    totalAdded: 0,
+                    totalRemoved: 0,
+                    byType: {
+                        career: 0,
+                        video: 0,
+                        story: 0,
+                        image: 0,
+                        pdf: 0
+                    }
+                }
+            };
+        }
+
+        // Save bookmark data
+        function saveBookmarkData(data) {
+            try {
+                data.metadata.lastModified = new Date().toISOString();
+                localStorage.setItem(BOOKMARK_STORAGE_KEY, JSON.stringify(data, null, 2));
+                return true;
+            } catch (error) {
+                showNotification('Error saving data', 'error');
+                return false;
+            }
+        }
+
+        // ==================== File Upload System ====================
+        function previewFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) return;
+
+            // Hide all previews first
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('videoPreview').style.display = 'none';
+            document.getElementById('pdfPreview').style.display = 'none';
+
+            const reader = new FileReader();
+            
+            if (file.type.startsWith('image/')) {
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } 
+            else if (file.type.startsWith('video/')) {
+                document.getElementById('videoPreview').src = URL.createObjectURL(file);
+                document.getElementById('videoPreview').style.display = 'block';
+            }
+            else if (file.type === 'application/pdf') {
+                document.getElementById('pdfPreview').style.display = 'block';
+                document.getElementById('pdfPreview').innerHTML = `
+                    📄 ${file.name}<br>
+                    <small>File size: ${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+                `;
+            }
+        }
+
+        function uploadFile() {
+            const fileInput = document.getElementById('fileInput');
+            const titleInput = document.getElementById('fileTitle');
+            const descriptionInput = document.getElementById('fileDescription');
+            
+            const file = fileInput.files[0];
+            if (!file) {
+                showNotification('Please select a file first', 'error');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const fileType = file.type.startsWith('image/') ? 'image' : 
+                              file.type.startsWith('video/') ? 'video' : 'pdf';
+
+                const fileData = {
+                    id: 'file-' + Date.now(),
+                    type: fileType,
+                    title: titleInput.value || file.name,
+                    description: descriptionInput.value,
+                    filename: file.name,
+                    data: e.target.result,
+                    size: file.size,
+                    uploadedAt: new Date().toISOString(),
+                    url: URL.createObjectURL(file)
+                };
+
+                const data = getBookmarkData();
+                data.uploadedFiles.unshift(fileData);
+                
+                if (saveBookmarkData(data)) {
+                    showNotification('File uploaded successfully ✓', 'success');
+                    displayUploadedFiles();
+                    resetUploadForm();
+                    
+                    // Automatically add to bookmarks
+                    addBookmark(fileData.id, fileType, fileData.title, fileData.data);
+                }
+            };
+
+            if (file.type.startsWith('image/') || file.type === 'application/pdf') {
+                reader.readAsDataURL(file);
+            } else {
+                // For large files like videos
+                const fileData = {
+                    id: 'file-' + Date.now(),
+                    type: 'video',
+                    title: titleInput.value || file.name,
+                    description: descriptionInput.value,
+                    filename: file.name,
+                    size: file.size,
+                    uploadedAt: new Date().toISOString(),
+                    url: URL.createObjectURL(file)
+                };
+
+                const data = getBookmarkData();
+                data.uploadedFiles.unshift(fileData);
+                
+                if (saveBookmarkData(data)) {
+                    showNotification('Video uploaded successfully ✓', 'success');
+                    displayUploadedFiles();
+                    resetUploadForm();
+                    addBookmark(fileData.id, 'video', fileData.title, fileData.url);
+                }
+            }
+        }
+
+        function displayUploadedFiles() {
+            const container = document.getElementById('uploadedFiles');
+            const data = getBookmarkData();
+            
+            if (!data.uploadedFiles || data.uploadedFiles.length === 0) {
+                container.innerHTML = '<div class="empty-state">No files uploaded yet</div>';
+                return;
+            }
+
+            const filesHtml = data.uploadedFiles.map(file => `
+                <div class="bookmark-card">
+                    <div class="bookmark-header">
+                        <h3 class="bookmark-title">${file.title}</h3>
+                        <span class="bookmark-type">${file.type === 'image' ? '🖼️' : file.type === 'video' ? '🎥' : '📄'} ${file.type}</span>
+                    </div>
+                    
+                    ${file.type === 'image' ? `
+                        <img src="${file.data}" style="max-width: 100%; border-radius: 10px; margin: 1rem 0;">
+                    ` : file.type === 'video' ? `
+                        <video controls style="max-width: 100%; border-radius: 10px; margin: 1rem 0;">
+                            <source src="${file.url}">
+                        </video>
+                    ` : `
+                        <div class="pdf-preview">
+                            📄 PDF File: ${file.filename}
+                            <br><small>${(file.size / 1024 / 1024).toFixed(2)} MB</small>
+                        </div>
+                    `}
+                    
+                    ${file.description ? `<p style="margin: 1rem 0;">${file.description}</p>` : ''}
+                    
+                    <div class="bookmark-footer">
+                        <span class="bookmark-date">Uploaded: ${new Date(file.uploadedAt).toLocaleString('en-US')}</span>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = filesHtml;
+        }
+
+        function resetUploadForm() {
+            document.getElementById('uploadForm').reset();
+            document.getElementById('imagePreview').style.display = 'none';
+            document.getElementById('videoPreview').style.display = 'none';
+            document.getElementById('pdfPreview').style.display = 'none';
+        }
+
+        // ==================== Basic Bookmark System ====================
+        function addBookmark(itemId, itemType, itemTitle, itemUrl = '#') {
+            const data = getBookmarkData();
+            
+            if (data.bookmarks.some(item => item.id === itemId)) {
+                showNotification('This item is already bookmarked', 'warning');
+                return false;
+            }
+
+            const newBookmark = {
+                id: itemId,
+                type: itemType,
+                title: itemTitle,
+                url: itemUrl,
+                notes: '',
+                timestamps: {
+                    created: new Date().toISOString(),
+                    lastModified: new Date().toISOString()
+                },
+                metadata: {
+                    favorite: false,
+                    tags: []
+                }
+            };
+
+            data.bookmarks.unshift(newBookmark);
+            data.statistics.totalAdded++;
+            data.statistics.byType[itemType] = (data.statistics.byType[itemType] || 0) + 1;
+
+            if (saveBookmarkData(data)) {
+                showNotification('Added to bookmarks ✓', 'success');
+                updateBookmarkCount();
+                updateBookmarkButtons();
+                return true;
+            }
+            return false;
+        }
+
+        function removeBookmark(itemId) {
+            if (!confirm('Are you sure you want to delete this item?')) return false;
+
+            const data = getBookmarkData();
+            const initialLength = data.bookmarks.length;
+            
+            data.bookmarks = data.bookmarks.filter(item => item.id !== itemId);
+            data.statistics.totalRemoved += (initialLength - data.bookmarks.length);
+
+            if (saveBookmarkData(data)) {
+                showNotification('Deleted successfully', 'success');
+                updateBookmarkCount();
+                updateBookmarkButtons();
+                
+                if (document.getElementById('bookmarksPage').style.display === 'block') {
+                    displayAllBookmarks();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        function updateBookmarkNotes(itemId, newNotes) {
+            const data = getBookmarkData();
+            const bookmark = data.bookmarks.find(item => item.id === itemId);
+            
+            if (bookmark) {
+                bookmark.notes = newNotes;
+                bookmark.timestamps.lastModified = new Date().toISOString();
+                
+                if (saveBookmarkData(data)) {
+                    showNotification('Notes saved', 'success');
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        function displayAllBookmarks() {
+            const container = document.getElementById('bookmarksList');
+            const emptyState = document.getElementById('emptyState');
+            const data = getBookmarkData();
+            
+            if (!data.bookmarks || data.bookmarks.length === 0) {
+                container.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+            
+            emptyState.style.display = 'none';
+            
+            const bookmarksHtml = data.bookmarks.map(bookmark => `
+                <div class="bookmark-card" data-id="${bookmark.id}">
+                    <div class="bookmark-header">
+                        <h3 class="bookmark-title">${bookmark.title}</h3>
+                        <div class="bookmark-actions">
+                            <span class="bookmark-type">${getTypeLabel(bookmark.type)}</span>
+                            <button class="btn btn-danger" onclick="removeBookmark('${bookmark.id}')" 
+                                    style="padding: 6px 12px; font-size: 12px;">
+                                🗑️ Delete
+                            </button>
+                        </div>
+                    </div>
+                    
+                    ${bookmark.type === 'image' ? `
+                        <img src="${bookmark.url}" style="max-width: 100%; border-radius: 10px; margin: 1rem 0;">
+                    ` : bookmark.type === 'video' ? `
+                        <video controls style="max-width: 100%; border-radius: 10px; margin: 1rem 0;">
+                            <source src="${bookmark.url}">
+                        </video>
+                    ` : ''}
+                    
+                    <div class="bookmark-notes">
+                        <textarea placeholder="Add your personal notes here..."
+                                onblur="updateBookmarkNotes('${bookmark.id}', this.value)"
+                                onkeyup="debounce(() => updateBookmarkNotes('${bookmark.id}', this.value), 500)">${bookmark.notes || ''}</textarea>
+                    </div>
+                    
+                    <div class="bookmark-footer">
+                        <span class="bookmark-date">${formatDate(bookmark.timestamps.created)}</span>
+                        <button class="btn btn-primary" onclick="window.location.href='${bookmark.url}'">
+                            View Item
+                        </button>
+                    </div>
+                    
+                    <div class="social-share">
+                        <button class="social-btn twitter" 
+                               onclick="shareOnTwitter('${bookmark.title}', '${bookmark.url}')">
+                            🐦 Twitter
+                        </button>
+                        <button class="social-btn facebook" 
+                               onclick="shareOnFacebook('${bookmark.url}')">
+                            📘 Facebook
+                        </button>
+                        <button class="social-btn linkedin" 
+                               onclick="shareOnLinkedIn('${bookmark.title}', '${bookmark.url}')">
+                            💼 LinkedIn
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            container.innerHTML = bookmarksHtml;
+        }
+
+        function getTypeLabel(type) {
+            const labels = {
+                'career': '💻 Career',
+                'video': '🎥 Video',
+                'story': '🌟 Success Story',
+                'image': '🖼️ Image',
+                'pdf': '📄 PDF File'
+            };
+            return labels[type] || type;
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+        }
+
+        function updateBookmarkCount() {
+            const data = getBookmarkData();
+            const count = data.bookmarks.length;
+            document.querySelector('.bookmark-count').textContent = count;
+        }
+
+        function updateBookmarkButtons() {
+            const data = getBookmarkData();
+            const bookmarkIds = data.bookmarks.map(item => item.id);
+            
+            document.querySelectorAll('.bookmark-btn').forEach(btn => {
+                const itemId = btn.getAttribute('data-id');
+                if (bookmarkIds.includes(itemId)) {
+                    btn.classList.add('added');
+                    btn.innerHTML = '✓ Saved';
+                } else {
+                    btn.classList.remove('added');
+                    btn.innerHTML = '♥ Save';
+                }
+            });
+        }
+
+        function setupNavigation() {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    showPage(page);
+                    
+                    // Update active link state
+                    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+        }
+
+        function showPage(pageName) {
+            // Hide all pages first
+            document.querySelectorAll('.page-content').forEach(page => {
+                page.style.display = 'none';
+            });
+            
+            // Show the requested page
+            if (pageName === 'home') {
+                document.getElementById('homePage').style.display = 'block';
+            } else if (pageName === 'bookmarks') {
+                document.getElementById('bookmarksPage').style.display = 'block';
+                displayAllBookmarks();
+            } else if (pageName === 'upload') {
+                document.getElementById('uploadPage').style.display = 'block';
+            }
+        }
+
+        function clearAllBookmarks() {
+            if (!confirm('Are you sure you want to delete all bookmarks? This action cannot be undone.')) return;
+            
+            const data = getBookmarkData();
+            data.bookmarks = [];
+            data.statistics.totalRemoved += data.statistics.totalAdded;
+            data.statistics.totalAdded = 0;
+            
+            if (saveBookmarkData(data)) {
+                showNotification('All bookmarks have been deleted', 'success');
+                updateBookmarkCount();
+                updateBookmarkButtons();
+                displayAllBookmarks();
+            }
+        }
+
+        function exportBookmarks(format) {
+            const data = getBookmarkData();
+            
+            if (format === 'json') {
+                const jsonStr = JSON.stringify(data, null, 2);
+                const blob = new Blob([jsonStr], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `nextstep-bookmarks-${new Date().toISOString().split('T')[0]}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification('Bookmarks exported successfully', 'success');
+            }
+        }
+
+        function shareOnTwitter(title, url) {
+            const text = `Check out "${title}" via NextStep Navigator`;
+            const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank');
+        }
+
+        function shareOnFacebook(url) {
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+            window.open(shareUrl, '_blank');
+        }
+
+        function shareOnLinkedIn(title, url) {
+            const text = `Check out "${title}" via NextStep Navigator`;
+            const shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}&summary=${encodeURIComponent(text)}`;
+            window.open(shareUrl, '_blank');
+        }
+
+        function showNotification(message, type = 'info') {
+            // Remove any existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notif => notif.remove());
+            
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            
+            let icon = 'ℹ️';
+            if (type === 'success') icon = '✅';
+            if (type === 'error') icon = '❌';
+            if (type === 'warning') icon = '⚠️';
+            
+            notification.innerHTML = `${icon} ${message}`;
+            document.body.appendChild(notification);
+            
+            // Remove notification automatically after 3 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideIn 0.3s ease reverse forwards';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 3000);
+        }
+
+        // Debounce function for performance optimization
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Initialize the application when the page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initBookmarkSystem();
+            
+            // Add event listeners for bookmark buttons
+            document.querySelectorAll('.bookmark-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const itemId = this.getAttribute('data-id');
+                    const itemType = this.getAttribute('data-type');
+                    const itemTitle = this.getAttribute('data-title');
+                    const itemUrl = this.getAttribute('data-url');
+                    
+                    if (this.classList.contains('added')) {
+                        removeBookmark(itemId);
+                    } else {
+                        addBookmark(itemId, itemType, itemTitle, itemUrl);
+                    }
+                });
+            });
+            
+            // Show the home page by default
+            showPage('home');
+        });
+    </script>
+</body>
+</html>
