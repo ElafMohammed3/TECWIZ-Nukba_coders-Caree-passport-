@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function AbSuccess_Storiesout() {
-  return (
+
+function Success_Stories() {  
+    return (
     
     <main className="container">
         <div className="tabs-container">

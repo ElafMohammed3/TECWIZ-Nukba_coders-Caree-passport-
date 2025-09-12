@@ -1,0 +1,81 @@
+{
+  "careers": [
+    {
+      "id": 1,
+      "title": "مهندس برمجيات",
+      "description": "يطور تطبيقات وأنظمة برمجية",
+      "skills": ["برمجة", "حل المشكلات", "العمل الجماعي"],
+      "education": "شهادة في علوم الحاسوب",
+      "salary": "$70,000 - $120,000",
+      "image": "software-engineer.jpg",
+      "industry": "تكنولوجيا",
+      "category": ["graduate", "professional"]
+    },
+    {
+      "id": 2,
+      "title": "طبيب",
+      "description": "متخصص طبي يشخص ويعالج الأمراض",
+      "skills": ["المعرفة الطبية", "التعاطف", "الانتباه للتفاصيل"],
+      "education": "شهادة في الطب",
+      "salary": "$100,000 - $300,000",
+      "image": "doctor.jpg",
+      "industry": "الرعاية الصحية",
+      "category": ["graduate", "professional"]
+    },
+    {
+      "id": 3,
+      "title": "مدرس",
+      "description": "يساعد الطلاب على التعلم والنمو",
+      "skills": ["التواصل", "الصبر", "الإبداع"],
+      "education": "شهادة في التعليم",
+      "salary": "$40,000 - $70,000",
+      "image": "teacher.jpg",
+      "industry": "التعليم",
+      "category": ["student", "graduate"]
+    }
+  ],
+  "resources": {
+    "student": [
+      {
+        "id": 1,
+        "title": "دليل اختيار التخصص بعد الثانوية",
+        "type": "مقال",
+        "link": "/resources/student/article1.pdf"
+      },
+      {
+        "id": 2,
+        "title": "كيفية الاستعداد للجامعة",
+        "type": "دليل",
+        "link": "/resources/student/guide1.pdf"
+      }
+    ],
+    "graduate": [
+      {
+        "id": 1,
+        "title": "كيفية كتابة سيرة ذاتية ناجحة",
+        "type": "مقال",
+        "link": "/resources/graduate/article1.pdf"
+      },
+      {
+        "id": 2,
+        "title": "نصائح لمقابلات العمل",
+        "type": "دليل",
+        "link": "/resources/graduate/guide1.pdf"
+      }
+    ],
+    "professional": [
+      {
+        "id": 1,
+        "title": "التطور الوظيفي والتقدم في العمل",
+        "type": "مقال",
+        "link": "/resources/professional/article1.pdf"
+      },
+      {
+        "id": 2,
+        "title": "كيفية تغيير مجال عملك",
+        "type": "دليل",
+        "link": "/resources/professional/guide1.pdf"
+      }
+    ]
+  }
+}

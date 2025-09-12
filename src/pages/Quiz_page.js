@@ -18,7 +18,7 @@ function Quiz_Page() {
             <button class="btn btn-primary" id="start-quiz">Start Quiz</button>
         </div>
         
-        <div id="quiz-questions" style="display: none;">
+        <div id="quiz-questions" style={{display: 'none'}}>
             <div class="quiz-question" id="current-question"></div>
             <div class="quiz-options" id="quiz-options-container"></div>
             <div class="quiz-nav">

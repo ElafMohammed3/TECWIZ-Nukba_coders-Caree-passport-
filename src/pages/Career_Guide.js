@@ -54,7 +54,7 @@ function Career_Guide() {
             </div>
 
             {/* <!-- Upload Page --> */}
-           < div id="uploadPage" class="page-content bookmarks-page">
+          <div id="uploadPage" className="page-content bookmarks-page">
    <div class="page-header">
        <h1>📤 Upload Your Files</h1>
        <p>Add your images, PDFs, or videos to bookmarks</p>

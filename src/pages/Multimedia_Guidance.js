@@ -17,7 +17,7 @@ function Multimedia_Guidance() {
             
             <div className="filter-group">
                 <select id="category-filter">
-                    <option value={all}>All Categories</option>
+                    <option value="all">All Categories</option>
                     <option value={Motivation}>Motivation</option>
                     <option value={JobRoles}>Job Roles</option>
                     <option value={Training}>Training</option>
@@ -26,7 +26,7 @@ function Multimedia_Guidance() {
                 </select>
                 
                 <select id="user-type-filter">
-                    <option value={all}>All Users</option>
+                    <option value="all">All Users</option>
                     <option value={NewGraduates}>New Graduates</option>
                     <option value={Professionals}>Professionals</option>
                     <option value={Students}>Students</option>

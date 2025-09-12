@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function feedback() {
+function Feedback() {
   return (
   <main className="feedback-container">
   <div id="initial-state">
@@ -36,4 +36,4 @@ function feedback() {
   );
 }
 
-export default feedback;
+export default Feedback;
