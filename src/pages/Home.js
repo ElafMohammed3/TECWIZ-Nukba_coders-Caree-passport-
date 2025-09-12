@@ -1,7 +1,11 @@
-function Home() {
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+const Home = () => {
   return (
-    <h1></h1>
+    <main className="container">
+    </main>
   );
-}
+};
 
 export default Home;

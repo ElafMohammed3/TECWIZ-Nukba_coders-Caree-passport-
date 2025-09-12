@@ -1,3 +1,7 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+
 function Quiz_Page() {
   return (
     <main id="quiz" class="page">

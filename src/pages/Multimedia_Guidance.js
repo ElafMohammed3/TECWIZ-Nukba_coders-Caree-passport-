@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function Multimedia_Guidance() {
   return (
     <main className="container">

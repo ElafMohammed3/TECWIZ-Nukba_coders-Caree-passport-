@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 function feedback() {
   return (
   <main className="feedback-container">
