@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import UserTypeSelector from './components/UserTypeSelector'; 
-import About_as from './pages/About_as';
+import About_Us from './pages/About_Us';
 import Career_Guide from './pages/Career_Guide';
 import Contact_Us from './pages/Contact_Us';
 import Content_Bookmarking_System from './pages/Content_Bookmarking_System';
@@ -27,7 +27,7 @@ function App() {
             path="/select-user-type" 
             element={<UserTypeSelector onSelect={setUserType} />} 
           />
-          <Route path="/About_as" element={<About_as userType={userType} />} />
+          <Route path="/About_Us" element={<About_Us userType={userType} />} />
           <Route path="/Admission_Coaching" element={<Admission_Coaching userType={userType} />} />
           <Route path="/Career_Guide" element={<Career_Guide userType={userType} />} />
           <Route path="/Contact_Us" element={<Contact_Us userType={userType} />} />

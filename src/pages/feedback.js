@@ -1,7 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
 
 function Feedback() {
+  const [showForm, setShowForm] = useState(false);
+  const [mood, setMood] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  const handleMoodSelect = (selectedMood) => {
+    setMood(selectedMood);
+    setShowForm(true);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setShowSuccess(true);
+    setShowForm(false);
+  };
   return (
   <main className="feedback-container">
   <div id="initial-state">

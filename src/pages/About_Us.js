@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function About() {
+function About_Us() {
   return (
           <main>
             <div className="page-header">
@@ -73,4 +73,4 @@ function About() {
   );
 }
 
-export default About;
+export default About_Us;

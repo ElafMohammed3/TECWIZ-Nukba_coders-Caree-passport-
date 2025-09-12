@@ -6,13 +6,12 @@ const UserTypeSelector = ({ onSelect }) => {
   const navigate = useNavigate();
 
   const handleSelect = (userType) => {
-   onSelect(userType);
-    navigate('/'); 
+    onSelect(userType);
+    navigate('/'); // نقل navigate هنا داخل الدالة
   };
 
-export default UserTypeSelector;
-  return (
-   <div className="user-type-selector">
+  return ( 
+    <div className="user-type-selector">
       <div className="selector-container">
         <h1>Welcome to NextStep Navigator</h1>
         <p>Select your category to get personalized content</p>
@@ -56,9 +55,7 @@ export default UserTypeSelector;
           <p>You can change your selection anytime from the top menu</p>
         </div>
       </div>
-      navigate('/');
-    </div>
-    
+  </div>
   );
 };
 
