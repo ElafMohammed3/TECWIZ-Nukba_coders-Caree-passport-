@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import '.\src\assets\Career Bank.css'
+import '.\src\assets\Career Bank.js'
 
 function Career_Guide() {
   return (

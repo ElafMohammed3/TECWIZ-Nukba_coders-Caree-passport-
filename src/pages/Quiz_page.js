@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import '.\src\assets\Quiz.js'
+import '.\src\assets\Quiz.css'
 
 function Quiz_Page() {
   return (

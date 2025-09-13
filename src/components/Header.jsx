@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import "./src/App.css"
 
 const Header = ({ userType }) => {
   const navigate = useNavigate();
@@ -19,40 +19,26 @@ const Header = ({ userType }) => {
   };
 
   return (
-    <header className="header">
-      <div className="container">
-        <div className="logo" onClick={() => navigate('/')}>
-          <h1>NextStep Navigator</h1>
-          <p>Your Guide to the Future</p>
-        </div>
-        
-        <nav className="nav">
-          {userType && (
-            <div className="user-type-display">
-              <span>Viewing as: {getUserTypeLabel()}</span>
-              <button onClick={handleChangeUserType} className="change-user-btn">
-                Change
-              </button>
-            </div>
-          )}
-          
-          <ul className="nav-links">
-            <li><a href="/">Home</a></li>
-            {userType && (
-              <>
-                <li><a href="/Career_Guide">Career Guide</a></li>
-                <li><a href="/Multimedia_Guidance">Multimedia</a></li>
-                <li><a href="/Admission_Coaching">Admission & Coaching</a></li>
-                <li><a href="/Content_Bookmarking_System">Bookmarks</a></li>
-              </>
-            )}
-            <li><a href="/About_as">About Us</a></li>
-            <li><a href="/Contact_Us">Contact Us</a></li>
-            {userType && <li><a href="/feedback">Feedback</a></li>}
-          </ul>
-        </nav>
-      </div>
-    </header>
+    
+
+<nav class="navbar">
+    <div class="navbar-logo">
+        <img src="public\images\snapedit_1757640405510.png" alt="logo" class="logo-image" />
+        <div class="logo-text">career pass</div>
+    </div>
+
+<div class="dropdown-content">
+    <a href="#">Home</a>
+    <a href=".\Content_Bookmarking_System">Bookmarks</a>
+    <a href=".\Career_Guide">Career Guide</a>
+    <a href=".\Multimedia_Guidance">Multimedia Guidance</a>
+    <a href=".\Admission_Coaching">Admission & Coaching</a>
+    <a href=".\About_as">/About_as</a>
+    <a href=".\Contact_Us">Contact Us</a>
+    <a href=".\Feedback">Feedback</a>
+</div>
+
+</nav>
   );
 };
 

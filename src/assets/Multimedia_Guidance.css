@@ -1,0 +1,307 @@
+/* 1. Global Styles & Variables */
+:root {
+    --primary-color: #3498db; /* Blue */
+    --secondary-color: #2c3e50; /* Dark Blue */
+    --accent-color: #e74c3c; /* Red */
+    --background-color: #f4f7f6;
+    --card-background: #ffffff;
+    --text-color: #333333;
+    --light-text: #7f8c8d;
+    --border-color: #e0e0e0;
+    --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --border-radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding: 2rem 0;
+    direction: rtl;
+}
+
+/* 2. Main Layout (Container) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* 3. Tabs Navigation */
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    background-color: var(--card-background);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(52, 152, 219, 0.4);
+}
+
+/* 4. Controls & Filters */
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+}
+
+.search-box {
+    flex-grow: 1;
+    min-width: 250px;
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.filter-group, .sort-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+#category-filter, #user-type-filter, #sort-option {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#reset-filters {
+    background-color: #f1f1f1;
+    color: var(--secondary-color);
+    border: 1px solid var(--border-color);
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#reset-filters:hover {
+    background-color: #e0e0e0;
+}
+
+/* 5. Media Grid & Cards */
+.media-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.media-card {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-card:hover {
+    transform: translateY(-5px);
+}
+
+.media-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+}
+
+.media-container iframe, .media-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.media-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: #fff;
+    font-size: 4rem;
+}
+
+.media-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.media-content h3 {
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.media-content p {
+    color: var(--light-text);
+    font-size: 0.95rem;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.media-meta {
+    display: flex;
+    gap: 1.5rem;
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 1rem;
+}
+
+.media-meta span i {
+    color: var(--primary-color);
+    margin-left: 5px;
+}
+
+.media-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.media-tag {
+    background-color: #e8f0f5;
+    color: var(--primary-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.media-tag.type {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.expert {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+.play-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.play-btn:hover {
+    background-color: #c0392b;
+}
+
+.play-btn i {
+    margin-left: 0.5rem;
+}
+
+audio {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--light-text);
+    font-size: 1.2rem;
+    padding: 3rem;
+}
+
+/* 6. Font Awesome Integration */
+/* Assuming Font Awesome is linked in the HTML head */
+.fas, .far, .fab {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+
+/* 7. Responsiveness */
+@media (max-width: 992px) {
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .filter-group, .sort-group {
+        width: 100%;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .media-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .media-card {
+        flex-direction: column;
+    }
+
+    .media-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

@@ -1,0 +1,172 @@
+/* General page settings */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f0f4f8, #d9e2ec);
+            color: #333;
+        }
+
+        /* Main container */
+        .page {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section title */
+        .section-title {
+            text-align: center;
+            font-size: 2.2em;
+            color: #0078D7;
+            margin-bottom: 20px;
+        }
+
+        /* Progress bar */
+        .quiz-progress {
+            width: 100%;
+            background-color: #e0e0e0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .quiz-progress-bar {
+            height: 12px;
+            width: 0%;
+            background-color: #0078D7;
+            transition: width 0.4s ease;
+        }
+
+        /* Intro section */
+        #quiz-intro h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        #quiz-intro p {
+            font-size: 1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Questions */
+        .quiz-question {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 50px;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Option buttons styling */
+        .quiz-option-button {
+            padding: 10px 15px;
+            border: 2px solid #0078D7;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-size: 1em;
+        }
+
+        .quiz-option-button:hover {
+            background-color: #0078D7;
+            color: #fff;
+        }
+
+        .quiz-option-button.selected {
+            background-color: #005a9e;
+            color: #fff;
+            border-color: #005a9e;
+        }
+
+        /* Navigation */
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #0078D7;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #005a9e;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #0078D7;
+            border: 2px solid #0078D7;
+        }
+
+        .btn-outline:hover {
+            background-color: #0078D7;
+            color: white;
+        }
+
+        .btn:disabled {
+            background-color: #ccc;
+            color: #999;
+            cursor: not-allowed;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Results */
+        #quiz-results h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+
+        #quiz-result-text {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        #career-suggestions {
+            font-size: 1em;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        /* Responsive design for small screens */
+        @media screen and (max-width: 600px) {
+            .page {
+                padding: 20px;
+            }
+            .quiz-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
+   

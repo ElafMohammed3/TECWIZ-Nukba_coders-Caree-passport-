@@ -1,4 +1,10 @@
-function Admission_and_Coaching(){
+import React from 'react';
+import { Link } from 'react-router-dom';
+import  '.\src\assets\Admission and Coaching.css'
+import '.\src\assets\Admission and Coaching.css'
+
+
+function Admission_Coaching(){
   return (
           <main className="container">
         <div className="nav-container">

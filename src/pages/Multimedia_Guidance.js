@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import '.\src\assets\Multimedia_Guidance.css'
+import '.\src\assets\Multimedia_Guidance.js'
 
 function Multimedia_Guidance() {
   return (

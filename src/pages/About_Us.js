@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import  '.\src\assets\About Us.css'
+import '.\src\assets\About Us.js'
 
 function About_Us() {
   return (
